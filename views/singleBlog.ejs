@@ -3,6 +3,7 @@
         <script src="/js/singleBlog.js"></script>
     </head>
     <body>
+        <%- include('partials/header') %>
         <h2><%= blog.title%></h2>
         <p id="blogId" style="visibility: hidden; display: none;"><%= blog._id %></p>
         <p><%= blog.content %></p>
