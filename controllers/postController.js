@@ -1,4 +1,27 @@
+const { post } = require("request");
 const Post = require("../model/post");
+const User= require("../model/user");
+
+// delete controller
+
+exports.destroy= async(req,res) =>{
+    Post.findById(req.params.id,function(err,blog){
+        // const Author=User.find({name:blog.author});
+        // const username=Author.email.split('@')[0];
+        if(blog.author==req.session.user.username)
+        {
+            blog.remove();
+            return res.redirect('/');
+        }
+        else
+        {
+            console.log('Unauthorized attempt for deletion');
+            return res.redirect('/');
+        }
+
+    })
+}
+
 
 exports.getUpvoteBlog = async (req, res) => {
     try {
