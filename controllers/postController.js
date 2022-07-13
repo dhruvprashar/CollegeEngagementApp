@@ -11,12 +11,12 @@ exports.destroy= async(req,res) =>{
         if(blog.author==req.session.user.username)
         {
             blog.remove();
-            return res.redirect('/');
+            return res.redirect('/blog');
         }
         else
         {
             console.log('Unauthorized attempt for deletion');
-            return res.redirect('/');
+            return res.redirect('/blog');
         }
 
     })
@@ -84,7 +84,11 @@ exports.getAllBlogs = async (req, res) => {
         // }
         // let data = await JSON.stringify(blogs_eg)
         // res.send(data);
-        res.render("blog.ejs", {blogs});
+        // res.locals.flash={
+        //     'message': req.flash('message')
+        // }
+       // const message = await req.consumeFlash('message');
+        res.render("blog.ejs", {blogs});//,message:message[0]});
     } catch (err) {
         console.log(err);
     }

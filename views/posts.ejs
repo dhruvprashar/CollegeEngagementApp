@@ -1,4 +1,17 @@
+<%- include('partials/header') %>
+
 <% for(let i in posts){ %>
 <h1><%= posts[i].title %></h1>
 <p>content</p>
 <% } %>
+
+<p>
+    
+    <h2 style="color: red;"> 
+        <%if(flash.success && flash.success.length>0){ %>
+            <%=flash.success%>
+         <%}%>
+     </h2> 
+   
+
+</p>

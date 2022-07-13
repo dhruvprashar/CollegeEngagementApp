@@ -1,6 +1,7 @@
 const Post = require("../model/post");
 
-exports.getInputForm = (req, res) => {
+exports.getInputForm = async (req, res) => {
+   
     res.render("create-post.ejs");
 }
 
@@ -22,7 +23,14 @@ exports.createPost = async (req, res) => {
             upvoteLists : []
         })
         const posts = await Post.find({});
-        res.render("posts.ejs", {posts: posts});
+        await req.flash('message',"*Post Created Successfully*");
+        const message = await req.consumeFlash('message');
+       
+        //res.redirect("/blog");
+        res.locals.flash={
+            'success': req.flash('message')
+        }
+        res.render("posts.ejs", {posts: posts});//,message:message[0]});
     } catch (err) {
         console.log(err)
     }

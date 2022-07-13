@@ -55,7 +55,11 @@
                 </div>
                   <% } %>
             </div>
-            
+            <h2 style="color: red;"> 
+              <%if(flash.success && flash.success.length>0){ %>
+                  <%=flash.success%>
+               <%}%>
+           </h2> 
           </div>
     </div>
 

@@ -57,7 +57,7 @@ exports.postLogin = async (req, res) => {
         }
         } else {
             await req.flash('message',"Invalid email or password ")
-                res.redirect("/login")
+            res.redirect("/login")
         }
     } catch (err) {
     console.log(err)
